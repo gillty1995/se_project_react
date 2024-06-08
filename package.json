@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://gillty1995.github.io/se_project_react/",
+  "homepage": "https://github.com/gillty1995/se_project_react.git/",
   "scripts": {
     "dev": "vite --open",
     "build": "vite build",
