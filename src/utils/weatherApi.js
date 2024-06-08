@@ -27,11 +27,6 @@ const isDay = ({ sunrise, sunset }, now) => {
   return sunrise * 1000 < now && now < sunset * 1000;
 };
 
-// const isDay = ({ sunrise, sunset }, now) => {
-//   const currentTime = now / 1000; // Convert milliseconds to seconds
-//   return sunrise < currentTime && currentTime < sunset;
-// };
-
 const getWeatherType = (temperature) => {
   if (temperature > 86) {
     return "hot";

@@ -6,7 +6,7 @@ export const weatherOptions = [
   },
   {
     day: true,
-    condition: "cloudy",
+    condition: "cloud",
     url: new URL("../assets/day/cloudy.png", import.meta.url).href,
   },
   {
@@ -36,7 +36,7 @@ export const weatherOptions = [
   },
   {
     day: false,
-    condition: "cloudy",
+    condition: "cloud",
     url: new URL("../assets/night/cloudy.png", import.meta.url).href,
   },
   {
@@ -62,16 +62,16 @@ export const weatherOptions = [
 ];
 
 export const defaultWeatherOptions = {
-  // day: {
-  //   day: true,
-  //   condition: "default",
-  //   url: new URL("../assets/day/default.png", import.meta.url).href,
-  // },
-  // night: {
-  //   day: false,
-  //   condition: "default",
-  //   url: new URL("../assets/night/default.png", import.meta.url).href,
-  // },
+  day: {
+    day: true,
+    condition: "default",
+    url: new URL("../assets/day/default.png", import.meta.url).href,
+  },
+  night: {
+    day: false,
+    condition: "default",
+    url: new URL("../assets/night/default.png", import.meta.url).href,
+  },
 };
 
 export const defaultClothingItems = [
@@ -114,8 +114,8 @@ export const defaultClothingItems = [
 ];
 
 export const coordinates = {
-  latitude: 24.555059,
-  longitude: -81.779984,
+  latitude: 24.5551,
+  longitude: -81.78,
 };
 
 export const APIkey = "f521b03aa72ce3d8bf49857456a2bcf1";
