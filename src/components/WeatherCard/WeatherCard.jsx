@@ -9,18 +9,12 @@ function WeatherCard({ weatherData }) {
     );
   });
 
-  console.log(weatherData);
-  console.log(filteredOptions);
-  console.log(weatherOptions);
-
   let weatherOption;
   if (filteredOptions.length === 0) {
     weatherOption = defaultWeatherOptions[weatherData.isDay ? "day" : "night"];
   } else {
     weatherOption = filteredOptions[0];
   }
-
-  console.log(weatherOption);
 
   return (
     <section className="weather-card">
