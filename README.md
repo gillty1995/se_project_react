@@ -1,10 +1,10 @@
 **Overview**
 
-Intro
-Figma
-Github Pages
-Video
-Final Thoughts
+1. Intro
+2. Figma
+3. Github Pages
+4. Video
+5. Final Thoughts
 
 **Intro**
 
