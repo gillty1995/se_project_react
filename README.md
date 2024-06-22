@@ -12,7 +12,7 @@
 
 **Technology**
 
-This project is created using React.js, JSX, js, html, css, and the use of OpenWeather API.
+This project is created using React.js, JSX, js, html, css, and the use of OpenWeather API. A mock server is set up using "json-server --watch db.json --id _id --port 3001".
 
 **Figma**
 
@@ -28,9 +28,7 @@ This project is created using React.js, JSX, js, html, css, and the use of OpenW
 
 **Final Thoughts**
 
-The main UI and functionality of the app is finished but it definetly needs more fine tuning.
-
-I ran out of time before my deadline to add the update weathercard funcitonality based on different weather, but will add it in as soon as I can.
+UI runs smoothly with the new api, and the profile route is set up but can use updates. I would've liked to add a delete confirmation modal but ran out of time. 
 
 **Plug Ins**
 
