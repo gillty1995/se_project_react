@@ -1,8 +1,13 @@
+import { useContext } from "react";
+import { CurrentTemperatureUnitContext } from "../contexts/CurrentTemperatureUnitContext";
+
 function processServerRequest(res) {
   if (res.ok) {
     return res.json();
   }
-  return Promise.reject(`Error: ${res.status}`);
+  return res
+    .text()
+    .then((text) => Promise.reject(`Error: ${res.status} - ${text}`));
 }
 
 export const getWeather = ({ latitude, longitude }, APIkey) => {
@@ -13,26 +18,37 @@ export const getWeather = ({ latitude, longitude }, APIkey) => {
   });
 };
 
-export const processWeatherData = (data) => {
-  const result = {};
-  result.city = data.name;
-  result.temp = { F: data.main.temp };
-  result.type = getWeatherType(result.temp.F);
-  result.condition = data.weather[0].main.toLowerCase();
-  result.isDay = isDay(data.sys, Date.now());
-  return result;
-};
-
 const isDay = ({ sunrise, sunset }, now) => {
   return sunrise * 1000 < now && now < sunset * 1000;
 };
 
+// const { currentTemperatureUnit } = useContext(CurrentTemperatureUnitContext);
+
 const getWeatherType = (temperature) => {
-  if (temperature > 86) {
+  const tempValue = parseInt(temperature, 10);
+  if (tempValue > 86) {
     return "hot";
-  } else if (temperature >= 66 && temperature <= 86) {
+  } else if (tempValue >= 66 && tempValue <= 86) {
     return "warm";
   } else {
     return "cold";
   }
+};
+
+export const processWeatherData = (data) => {
+  const result = {};
+  result.city = data.name;
+  result.temp = {
+    F: `${Math.round(data.main.temp)}°F`,
+    C: `${Math.round(((data.main.temp - 32) * 5) / 9)}°C`,
+  };
+  result.type = getWeatherType(result.temp.F);
+  result.condition =
+    data.weather && data.weather[0]
+      ? data.weather[0].main.toLowerCase()
+      : "unknown";
+  result.isDay = isDay(data.sys, Date.now());
+  console.log(result.temp);
+  console.log(data.weather);
+  return result;
 };

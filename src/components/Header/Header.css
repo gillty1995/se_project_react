@@ -22,9 +22,10 @@
 
 .header__user-container {
   display: flex;
+  margin-left: auto;
   align-items: center;
-  max-width: 239px;
-  height: 25px;
+  /* max-width: 369px; */
+  height: 28px;
 }
 
 .header__logo {
@@ -53,10 +54,20 @@
   font-weight: 700;
   font-size: 20px;
   line-height: 24px;
-  margin: 0 12px 0 20px;
+  /* margin: 0 12px 0 20px; */
+  padding-right: 12px;
 }
 
 .header__avatar {
   width: 40px;
   height: 40px;
+  padding-top: 10px;
+}
+
+.header__link {
+  display: flex;
+  text-decoration: none;
+  color: rgba(0, 0, 0, 1);
+  margin: 0;
+  padding-left: 20px;
 }

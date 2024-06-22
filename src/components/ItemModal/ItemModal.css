@@ -6,8 +6,10 @@
 }
 
 .modal__image {
-  width: 498px;
-  height: 498px;
+  width: 100%;
+  height: auto;
+  max-height: 498px;
+  object-fit: cover;
 }
 
 .modal__footer {
@@ -17,6 +19,8 @@
   font-weight: 700;
   line-height: 24px;
   text-align: left;
+  display: flex;
+  justify-content: space-between;
 }
 
 .modal__caption {
@@ -27,4 +31,34 @@
 .modal__weather {
   margin: 0;
   padding-bottom: 32px;
+}
+
+.modal__delete {
+  font-family: Cabinet Grotesk;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 24px;
+  text-align: left;
+  color: rgba(255, 77, 0, 1);
+  background: none;
+  border: none;
+  cursor: pointer;
+  max-width: 100%;
+  height: 24px;
+  padding: 20px 32px 0 0;
+}
+
+.modal__close-white {
+  background-image: url(../../assets/itemModal-close-btn.svg);
+  position: absolute;
+  top: 20px;
+  right: 28px;
+  width: 16px;
+  height: 16px;
+  border: none;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-color: transparent;
+  cursor: pointer;
+  padding: 0;
 }

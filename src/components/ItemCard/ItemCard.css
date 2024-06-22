@@ -27,6 +27,9 @@
 
 .card__image {
   width: 100%;
+  height: auto;
+  max-height: 498px;
+  object-fit: cover;
   border-radius: 12px;
   overflow: hidden;
   border: 1px solid rgba(0, 0, 0, 0.3);

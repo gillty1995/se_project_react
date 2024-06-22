@@ -66,6 +66,11 @@
   font-weight: 700;
   font-size: 16px;
   line-height: 20px;
+  padding-bottom: 24px;
+}
+
+.modal__label:last-of-type {
+  padding: 0;
 }
 
 .modal__input {
