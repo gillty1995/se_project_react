@@ -8,7 +8,6 @@ function ClothesSection({
   handleAddClick,
   handleDeleteItem,
 }) {
-  console.log("Items in ClothesSection:", items);
   return (
     <div className="clothes-section">
       <div className="clothes-section__header">
