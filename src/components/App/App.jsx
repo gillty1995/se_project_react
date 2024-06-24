@@ -26,6 +26,28 @@ function App() {
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
   const [clothingItems, setClothingItems] = useState([]);
 
+  useEffect(() => {
+    getWeather(coordinates, APIkey)
+      .then((res) => {
+        const processWeather = processWeatherData(res);
+        setWeatherData(processWeather);
+      })
+      .catch(console.error);
+  }, []);
+
+  useEffect(() => {
+    getItems()
+      .then((data) => {
+        console.log("Fetched clothing items:", data);
+        setClothingItems(data);
+      })
+      .catch(console.error);
+  }, []);
+
+  const handleToggleSwitchChange = () => {
+    setCurrentTemperatureUnit((prevUnit) => (prevUnit === "F" ? "C" : "F"));
+  };
+
   const handleCardClick = (card) => {
     setActiveModal("preview");
     setSelectedCard(card);
@@ -54,29 +76,7 @@ function App() {
     setActiveModal("");
   };
 
-  useEffect(() => {
-    getWeather(coordinates, APIkey)
-      .then((res) => {
-        const processWeather = processWeatherData(res);
-        setWeatherData(processWeather);
-      })
-      .catch(console.error);
-  }, []);
-
-  useEffect(() => {
-    getItems()
-      .then((data) => {
-        console.log("Fetched clothing items:", data);
-        setClothingItems(data);
-      })
-      .catch(console.error);
-  }, []);
-
-  const handleToggleSwitchChange = () => {
-    setCurrentTemperatureUnit((prevUnit) => (prevUnit === "F" ? "C" : "F"));
-  };
-
-  const onAddItem = (item) => {
+  const onAddItem = (item, onDone) => {
     console.log("Adding item:", item);
     addItem(item)
       .then((newItem) => {
@@ -86,6 +86,8 @@ function App() {
           console.log("Updated clothing items:", updatedItems);
           return updatedItems;
         });
+        if (onDone) onDone();
+        closeActiveModal();
       })
       .catch(console.error);
   };
@@ -110,7 +112,13 @@ function App() {
             />
             <Route
               path="/profile"
-              element={<Profile handleCardClick={handleCardClick} />}
+              element={
+                <Profile
+                  handleCardClick={handleCardClick}
+                  clothingItems={clothingItems}
+                  handleAddClick={handleAddClick}
+                />
+              }
             />
           </Routes>
           <Footer />

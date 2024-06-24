@@ -131,6 +131,12 @@
       "imageUrl": "https://images.unsplash.com/photo-1602293589930-45aad59ba3ab?q=80&w=3174&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       "weather": "warm",
       "_id": 26
+    },
+    {
+      "name": "Jersey 3",
+      "imageUrl": "https://retrokitshop.com/cdn/shop/products/717d86be.jpg?v=1683891873&width=2200",
+      "weather": "hot",
+      "_id": 27
     }
   ]
 }

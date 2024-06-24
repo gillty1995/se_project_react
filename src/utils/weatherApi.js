@@ -1,14 +1,6 @@
-import { useContext } from "react";
-import { CurrentTemperatureUnitContext } from "../contexts/CurrentTemperatureUnitContext";
-
-function processServerRequest(res) {
-  if (res.ok) {
-    return res.json();
-  }
-  return res
-    .text()
-    .then((text) => Promise.reject(`Error: ${res.status} - ${text}`));
-}
+// import { useContext } from "react";
+// import { CurrentTemperatureUnitContext } from "../contexts/CurrentTemperatureUnitContext";
+import { processServerRequest } from "./utils";
 
 export const getWeather = ({ latitude, longitude }, APIkey) => {
   return fetch(
@@ -21,8 +13,6 @@ export const getWeather = ({ latitude, longitude }, APIkey) => {
 const isDay = ({ sunrise, sunset }, now) => {
   return sunrise * 1000 < now && now < sunset * 1000;
 };
-
-// const { currentTemperatureUnit } = useContext(CurrentTemperatureUnitContext);
 
 const getWeatherType = (temperature) => {
   const tempValue = parseInt(temperature, 10);

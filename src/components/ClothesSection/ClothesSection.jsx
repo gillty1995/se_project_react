@@ -1,63 +1,14 @@
-import React, { useState, useEffect } from "react";
 import "./ClothesSection.css";
 
 import ItemCard from "../ItemCard/ItemCard";
-import AddItemModal from "../AddItemModal/AddItemModal";
 
-import { getItems, addItem, deleteItem } from "../../utils/api";
-
-function ClothesSection({ handleCardClick, card }) {
-  const [items, setItems] = useState([]);
-  const [activeModal, setActiveModal] = useState("");
-
-  useEffect(() => {
-    fetchItems();
-  }, []);
-
-  const fetchItems = () => {
-    getItems()
-      .then((fetchedItems) => {
-        setItems(fetchedItems);
-      })
-      .catch((error) => {
-        console.error("Error fetching items:", error);
-      });
-  };
-
-  const handleAddClick = () => {
-    setActiveModal("add-garment");
-  };
-
-  const handleDeleteItem = (card) => {
-    const itemId = card._id;
-
-    deleteItem(itemId)
-      .then(() => {
-        setClothingItems((prevItems) =>
-          prevItems.filter((item) => item._id !== itemId)
-        );
-        closeActiveModal();
-      })
-      .catch((error) => {
-        console.error("Error deleting item:", error);
-      });
-  };
-
-  const closeActiveModal = () => {
-    setActiveModal("");
-  };
-
-  const handleAddItem = (item) => {
-    console.log("Adding item:", item);
-    addItem(item)
-      .then((newItem) => {
-        console.log("New item from API:", newItem);
-        setItems((prevItems) => [newItem, ...prevItems]); // Prepend new item
-        closeActiveModal();
-      })
-      .catch(console.error);
-  };
-
+function ClothesSection({
+  items,
+  handleCardClick,
+  handleAddClick,
+  handleDeleteItem,
+}) {
+  console.log("Items in ClothesSection:", items);
   return (
     <div className="clothes-section">
       <div className="clothes-section__header">
@@ -70,22 +21,19 @@ function ClothesSection({ handleCardClick, card }) {
         </button>
       </div>
       <ul className="clothes-section__items">
-        {items.map((item) => (
-          <ItemCard
-            key={item._id}
-            item={item}
-            onCardClick={handleCardClick}
-            onDelete={handleDeleteItem}
-          />
-        ))}
+        {items && items.length > 0 ? (
+          items.map((item) => (
+            <ItemCard
+              key={item._id}
+              item={item}
+              onCardClick={() => handleCardClick(item)}
+              onDelete={() => handleDeleteItem(item)}
+            />
+          ))
+        ) : (
+          <li>No items found</li>
+        )}
       </ul>
-      {activeModal === "add-garment" && (
-        <AddItemModal
-          closeActiveModal={closeActiveModal}
-          isOpen={true}
-          onAddItem={handleAddItem}
-        />
-      )}
     </div>
   );
 }
