@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import ModalWithForm from "./ModalWithForm";
-import { loginUser } from "./auth";
+import ModalWithForm from "../ModalWithForm/ModalWithForm";
+import { loginUser } from "../../utils/auth";
 
 const LoginModal = ({ isOpen, onClose }) => {
   const [email, setEmail] = useState("");

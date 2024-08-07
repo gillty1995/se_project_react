@@ -1,4 +1,7 @@
 import React, { useState } from "react";
+
+import "./RegisterModal.css";
+
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import { registUser } from "../../utils/auth";
 
@@ -22,16 +25,17 @@ const RegisterModal = ({ isOpen, onClose }) => {
 
   return (
     <ModalWithForm
-      title="Register"
+      title="Sign Up"
       buttonText="Sign Up"
       isOpen={isOpen}
       onClose={onClose}
       onSubmit={handleSubmit}
     >
-      <label htmlFor="register-email">
+      <label htmlFor="register-email" className="modal__label">
         Email
         <input
           type="email"
+          className="modal__input"
           id="register-email"
           placeholder="Email"
           value={email}
@@ -39,10 +43,11 @@ const RegisterModal = ({ isOpen, onClose }) => {
           required
         />
       </label>
-      <label htmlFor="register-password">
+      <label htmlFor="register-password" className="modal__label">
         Password
         <input
           type="password"
+          className="modal__input"
           id="register-password"
           placeholder="Password"
           value={password}
@@ -50,20 +55,11 @@ const RegisterModal = ({ isOpen, onClose }) => {
           required
         />
       </label>
-      <label htmlFor="register-avatar">
-        Avatar URL
-        <input
-          type="text"
-          id="register-avatar"
-          placeholder="Avatar URL"
-          value={avatar}
-          onChange={(e) => setAvatar(e.target.value)}
-        />
-      </label>
-      <label htmlFor="register-name">
+      <label htmlFor="register-name" className="modal__label">
         Name
         <input
           type="text"
+          className="modal__input"
           id="register-name"
           placeholder="Name"
           value={name}
@@ -71,6 +67,20 @@ const RegisterModal = ({ isOpen, onClose }) => {
           required
         />
       </label>
+      <label htmlFor="register-avatar" className="modal__label">
+        Avatar URL
+        <input
+          type="text"
+          className="modal__input"
+          id="register-avatar"
+          placeholder="Avatar URL"
+          value={avatar}
+          onChange={(e) => setAvatar(e.target.value)}
+        />
+      </label>
+      <button type="submit" className="modal__login-btn">
+        or Log In
+      </button>
     </ModalWithForm>
   );
 };
