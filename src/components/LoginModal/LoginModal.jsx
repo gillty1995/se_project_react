@@ -23,7 +23,7 @@ const LoginModal = ({ isOpen, onClose, openRegisterModal }) => {
   return (
     <ModalWithForm
       title="Login"
-      buttonText="Sign In"
+      buttonText="Log In"
       isOpen={isOpen}
       onClose={onClose}
       onSubmit={handleSubmit}

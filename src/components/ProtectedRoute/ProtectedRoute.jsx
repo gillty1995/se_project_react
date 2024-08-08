@@ -1,28 +1,11 @@
-import React, { createContext, useState, useEffect } from "react";
+import React, { useContext } from "react";
+import { Navigate } from "react-router-dom";
+import AuthContext from "../../contexts/AuthContext";
 
-const AuthContext = createContext();
+function ProtectedRoute({ element, ...rest }) {
+  const { isAuthenticated } = useContext(AuthContext);
 
-export const AuthProvider = ({ children }) => {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  return isAuthenticated ? element : <Navigate to="/login" />;
+}
 
-  useEffect(() => {
-    const token = localStorage.getItem("token");
-    if (token) {
-      setIsAuthenticated(true);
-    }
-  }, []);
-
-  const login = () => setIsAuthenticated(true);
-  const logout = () => {
-    setIsAuthenticated(false);
-    localStorage.removeItem("token");
-  };
-
-  return (
-    <AuthContext.Provider value={{ isAuthenticated, login, logout }}>
-      {children}
-    </AuthContext.Provider>
-  );
-};
-
-export default AuthContext;
+export default ProtectedRoute;

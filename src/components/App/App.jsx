@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useNavigate } from "react-router-dom";
 
 import "./App.css";
 
@@ -35,6 +35,7 @@ function App() {
   const { login, logout } = useContext(AuthContext);
   const [currentUser, setCurrentUser] = useState(null);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     getWeather(coordinates, APIkey)
@@ -145,6 +146,7 @@ function App() {
         setCurrentUser(data.user);
         login();
         closeActiveModal();
+        navigate("/");
       })
       .catch((error) => {
         console.error("Login error:", error);
