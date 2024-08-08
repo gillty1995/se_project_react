@@ -1,14 +1,20 @@
 **Overview**
 
 1. Intro
-2. Figma
-3. Github Pages
-4. Video
-5. Final Thoughts
+2. Back-End
+3. Technology
+4. Figma
+5. Github Pages
+6. Video
+7. Final Thoughts
 
 **Intro**
 
 "WTWR" is an app created to report your local weather and recommend clothing that is appropriate for the day.
+
+**Back-End**
+
+Here is a link to the back-end server. https://github.com/gillty1995/se_project_express
 
 **Technology**
 
