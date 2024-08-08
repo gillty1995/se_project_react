@@ -5,7 +5,7 @@ import "./RegisterModal.css";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import { registUser } from "../../utils/auth";
 
-const RegisterModal = ({ isOpen, onClose }) => {
+const RegisterModal = ({ isOpen, onClose, openLoginModal }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
@@ -78,7 +78,14 @@ const RegisterModal = ({ isOpen, onClose }) => {
           onChange={(e) => setAvatar(e.target.value)}
         />
       </label>
-      <button type="submit" className="modal__login-btn">
+      <button
+        type="button"
+        className="modal__login-btn"
+        onClick={() => {
+          onClose();
+          openLoginModal();
+        }}
+      >
         or Log In
       </button>
     </ModalWithForm>

@@ -34,6 +34,7 @@ function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const { login, logout } = useContext(AuthContext);
   const [currentUser, setCurrentUser] = useState(null);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   useEffect(() => {
     getWeather(coordinates, APIkey)
@@ -57,7 +58,8 @@ function App() {
     const token = localStorage.getItem("jwt");
     if (token) {
       checkToken(token)
-        .then(() => {
+        .then((userData) => {
+          setIsLoggedIn(true);
           setIsAuthenticated(true);
           setCurrentUser(userData);
           login();
@@ -65,6 +67,7 @@ function App() {
         .catch((err) => {
           console.error("Token validation failed:", err);
           setCurrentUser(null);
+          setIsLoggedIn(false);
           logout();
         });
     }
@@ -137,6 +140,7 @@ function App() {
       .then((data) => {
         console.log("Login successful:", data);
         localStorage.setItem("jwt", data.token);
+        setIsLoggedIn(true);
         setIsAuthenticated(true);
         setCurrentUser(data.user);
         login();
@@ -162,6 +166,7 @@ function App() {
               weatherData={weatherData}
               openLoginModal={openLoginModal}
               openRegisterModal={openRegisterModal}
+              isLoggedIn={isLoggedIn}
             />
             <Routes>
               <Route
@@ -206,10 +211,18 @@ function App() {
             onDelete={handleDeleteItem}
           />
           {activeModal === "login" && (
-            <LoginModal isOpen={true} onClose={closeActiveModal} />
+            <LoginModal
+              isOpen={true}
+              onClose={closeActiveModal}
+              openRegisterModal={openRegisterModal}
+            />
           )}
           {activeModal === "register" && (
-            <RegisterModal isOpen={true} onClose={closeActiveModal} />
+            <RegisterModal
+              isOpen={true}
+              onClose={closeActiveModal}
+              openLoginModal={openLoginModal}
+            />
           )}
         </CurrentTemperatureUnitContext.Provider>
       </div>

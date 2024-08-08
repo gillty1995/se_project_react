@@ -1,4 +1,4 @@
-.modal__login-btn {
+.modal__register-btn {
   position: absolute;
   width: 124px;
   height: 36px;
@@ -9,12 +9,8 @@
   color: rgba(0, 0, 0, 0.5);
   background: transparent;
   border: none;
-  margin-top: 315px;
+  margin-top: 162px;
   margin-left: 103px;
   padding: 0;
-  cursor: pointer;
-}
-
-.modal__submit {
   cursor: pointer;
 }

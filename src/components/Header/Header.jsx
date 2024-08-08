@@ -1,59 +1,3 @@
-// import { Link } from "react-router-dom";
-// import { useContext } from "react";
-
-// import "./Header.css";
-
-// import avatar from "../../assets/avatar.svg";
-// import logo from "../../assets/logo.png";
-// import ToggleSwitch from "../ToggleSwitch/ToggleSwitch";
-// import CurrentUserContext from "../../contexts/CurrentUserContext";
-
-// function Header({ handleAddClick, weatherData }) {
-//   const currentUser = useContext(CurrentUserContext);
-
-//   const currentDate = new Date().toLocaleString("default", {
-//     month: "long",
-//     day: "numeric",
-//   });
-
-//   return (
-//     <header className="header">
-//       <Link to="/">
-//         <img src={logo} alt="logo" className="header__logo" />
-//       </Link>
-//       <p className="header__date">
-//         {currentDate}, {weatherData.city}
-//       </p>
-//       <div className="header__user-container">
-//         <ToggleSwitch />
-//         <button
-//           onClick={handleAddClick}
-//           type="button"
-//           className="header__add-clothes-btn"
-//         >
-//           + Add clothes
-//         </button>
-//         {currentUser ? (
-//           <Link to="/profile" className="header__link">
-//             <p className="header__username">{currentUser.name}</p>
-//             <img
-//               src={currentUser.avatar || avatar} // Use avatar from user or default
-//               alt="Avatar"
-//               className="header__avatar"
-//             />
-//           </Link>
-//         ) : (
-//           <Link to="/signin" className="header__link">
-//             Log In
-//           </Link>
-//         )}
-//       </div>
-//     </header>
-//   );
-// }
-
-// export default Header;
-
 import { Link } from "react-router-dom";
 import { useContext } from "react";
 
@@ -69,6 +13,7 @@ function Header({
   weatherData,
   openLoginModal,
   openRegisterModal,
+  isLoggedIn,
 }) {
   const currentUser = useContext(CurrentUserContext);
 
@@ -87,7 +32,7 @@ function Header({
       </p>
       <div className="header__user-container">
         <ToggleSwitch />
-        {currentUser ? (
+        {isLoggedIn ? (
           <>
             <button
               onClick={handleAddClick}

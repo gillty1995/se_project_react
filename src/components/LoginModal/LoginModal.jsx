@@ -2,7 +2,9 @@ import React, { useState } from "react";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import { loginUser } from "../../utils/auth";
 
-const LoginModal = ({ isOpen, onClose }) => {
+import "./LoginModal.css";
+
+const LoginModal = ({ isOpen, onClose, openRegisterModal }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -26,9 +28,10 @@ const LoginModal = ({ isOpen, onClose }) => {
       onClose={onClose}
       onSubmit={handleSubmit}
     >
-      <label htmlFor="login-email">
+      <label htmlFor="login-email" className="modal__label">
         Email
         <input
+          className="modal__input"
           type="email"
           id="login-email"
           placeholder="Email"
@@ -37,9 +40,10 @@ const LoginModal = ({ isOpen, onClose }) => {
           required
         />
       </label>
-      <label htmlFor="login-password">
+      <label htmlFor="login-password" className="modal__label">
         Password
         <input
+          className="modal__input"
           type="password"
           id="login-password"
           placeholder="Password"
@@ -48,6 +52,16 @@ const LoginModal = ({ isOpen, onClose }) => {
           required
         />
       </label>
+      <button
+        type="button"
+        className="modal__register-btn"
+        onClick={() => {
+          onClose();
+          openRegisterModal();
+        }}
+      >
+        or Sign Up
+      </button>
     </ModalWithForm>
   );
 };
