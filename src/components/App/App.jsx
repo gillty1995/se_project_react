@@ -141,14 +141,21 @@ function App() {
       .then((data) => {
         console.log("Login successful:", data);
 
-        if (data.token && data.user) {
+        if (data.token) {
           localStorage.setItem("jwt", data.token);
           setIsLoggedIn(true);
           setIsAuthenticated(true);
-          setCurrentUser(data.user);
+
+          checkToken(data.token)
+            .then((userData) => {
+              setCurrentUser(userData);
+            })
+            .catch((err) => {
+              console.error("Error fetching user data:", err);
+              setCurrentUser(null);
+            });
 
           login();
-
           closeActiveModal();
           navigate("/");
         } else {
@@ -224,6 +231,7 @@ function App() {
               isOpen={true}
               onClose={closeActiveModal}
               openRegisterModal={openRegisterModal}
+              handleLogin={handleLogin}
             />
           )}
           {activeModal === "register" && (
@@ -231,6 +239,7 @@ function App() {
               isOpen={true}
               onClose={closeActiveModal}
               openLoginModal={openLoginModal}
+              handleRegister={handleRegister}
             />
           )}
         </CurrentTemperatureUnitContext.Provider>

@@ -5,7 +5,7 @@ import "./RegisterModal.css";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import { registUser } from "../../utils/auth";
 
-const RegisterModal = ({ isOpen, onClose, openLoginModal }) => {
+const RegisterModal = ({ isOpen, onClose, openLoginModal, handleRegister }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
@@ -13,15 +13,10 @@ const RegisterModal = ({ isOpen, onClose, openLoginModal }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    registUser({ email, password, name, avatar })
-      .then((data) => {
-        console.log("Registration successful:", data);
-        onClose();
-      })
-      .catch((error) => {
-        console.log("Registration error:", error);
-      });
+    handleRegister({ email, password, name, avatar });
   };
+
+  const isFormValid = email && password && name;
 
   return (
     <ModalWithForm
@@ -30,6 +25,7 @@ const RegisterModal = ({ isOpen, onClose, openLoginModal }) => {
       isOpen={isOpen}
       onClose={onClose}
       onSubmit={handleSubmit}
+      isFormValid={isFormValid}
     >
       <label htmlFor="register-email" className="modal__label">
         Email

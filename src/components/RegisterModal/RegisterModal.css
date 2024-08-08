@@ -18,3 +18,7 @@
 .modal__submit {
   cursor: pointer;
 }
+
+.modal__submit:disabled {
+  background: rgba(0, 0, 0, 0.3);
+}

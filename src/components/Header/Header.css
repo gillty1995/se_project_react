@@ -48,20 +48,21 @@
 }
 
 .header__username {
-  width: 157px;
+  max-width: 157px;
   height: 25px;
   font-family: "Cabinet Grotesk";
   font-weight: 700;
   font-size: 20px;
   line-height: 24px;
-  /* margin: 0 12px 0 20px; */
   padding-right: 12px;
 }
 
 .header__avatar {
   width: 40px;
   height: 40px;
-  padding-top: 10px;
+  margin-top: 10px;
+  border-radius: 50%;
+  padding: 0;
 }
 
 .header__link {

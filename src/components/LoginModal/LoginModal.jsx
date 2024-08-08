@@ -1,23 +1,28 @@
 import React, { useState } from "react";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import { loginUser } from "../../utils/auth";
-
 import "./LoginModal.css";
 
-const LoginModal = ({ isOpen, onClose, openRegisterModal }) => {
+const LoginModal = ({ isOpen, onClose, openRegisterModal, handleLogin }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [emailError, setEmailError] = useState("");
+  const [passwordError, setPasswordError] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    loginUser({ email, password })
-      .then((data) => {
-        console.log("Login successful:", data);
-        onClose();
-      })
-      .catch((error) => {
-        console.error("Login error:", error);
-      });
+    setPasswordError("");
+
+    handleLogin({ email, password });
+  };
+
+  const isFormValid = email && password;
+
+  const handlePasswordChange = (e) => {
+    setPassword(e.target.value);
+    if (e.target.value) {
+      setPasswordError("");
+    }
   };
 
   return (
@@ -27,9 +32,10 @@ const LoginModal = ({ isOpen, onClose, openRegisterModal }) => {
       isOpen={isOpen}
       onClose={onClose}
       onSubmit={handleSubmit}
+      isFormValid={isFormValid}
     >
       <label htmlFor="login-email" className="modal__label">
-        Email
+        {emailError ? emailError : "Email"}
         <input
           className="modal__input"
           type="email"
@@ -40,15 +46,20 @@ const LoginModal = ({ isOpen, onClose, openRegisterModal }) => {
           required
         />
       </label>
-      <label htmlFor="login-password" className="modal__label">
-        Password
+      <label
+        htmlFor="login-password"
+        className={`modal__label ${passwordError ? "modal__label_error" : ""}`}
+      >
+        {passwordError ? passwordError : "Password"}
         <input
-          className="modal__input"
+          className={`modal__input ${
+            passwordError ? "modal__input_error" : ""
+          }`}
           type="password"
           id="login-password"
           placeholder="Password"
           value={password}
-          onChange={(e) => setPassword(e.target.value)}
+          onChange={handlePasswordChange}
           required
         />
       </label>

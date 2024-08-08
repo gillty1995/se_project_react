@@ -14,3 +14,12 @@
   padding: 0;
   cursor: pointer;
 }
+
+.modal__label_error {
+  color: rgba(255, 77, 0, 1);
+}
+
+.modal__input_error {
+  color: rgba(255, 77, 0, 1);
+  border-bottom: 1px solid rgba(255, 77, 0, 1);
+}
