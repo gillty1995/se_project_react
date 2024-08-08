@@ -140,13 +140,20 @@ function App() {
     loginUser({ email, password })
       .then((data) => {
         console.log("Login successful:", data);
-        localStorage.setItem("jwt", data.token);
-        setIsLoggedIn(true);
-        setIsAuthenticated(true);
-        setCurrentUser(data.user);
-        login();
-        closeActiveModal();
-        navigate("/");
+
+        if (data.token && data.user) {
+          localStorage.setItem("jwt", data.token);
+          setIsLoggedIn(true);
+          setIsAuthenticated(true);
+          setCurrentUser(data.user);
+
+          login();
+
+          closeActiveModal();
+          navigate("/");
+        } else {
+          console.error("Invalid login response:", data);
+        }
       })
       .catch((error) => {
         console.error("Login error:", error);
