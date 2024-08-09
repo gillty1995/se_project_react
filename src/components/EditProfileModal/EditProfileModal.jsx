@@ -1,7 +1,5 @@
 import React, { useState } from "react";
-
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
-
 import "./EditProfileModal.css";
 
 const EditProfileModal = ({ isOpen, onClose, handleProfileUpdate }) => {
@@ -10,15 +8,15 @@ const EditProfileModal = ({ isOpen, onClose, handleProfileUpdate }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (name) {
+    if (name || avatar) {
       handleProfileUpdate({ name, avatar });
       closeModal();
     } else {
-      alert("Please fill out all fields.");
+      alert("Please fill out at least one field.");
     }
   };
 
-  const isFormValid = true;
+  const isFormValid = name || avatar;
 
   const closeModal = () => {
     setName("");
