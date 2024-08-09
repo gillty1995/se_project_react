@@ -3,7 +3,6 @@ import React, { useState } from "react";
 import "./RegisterModal.css";
 
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
-import { registUser } from "../../utils/auth";
 
 const RegisterModal = ({ isOpen, onClose, openLoginModal, handleRegister }) => {
   const [email, setEmail] = useState("");

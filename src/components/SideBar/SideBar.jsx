@@ -5,7 +5,7 @@ import "./SideBar.css";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
 import avatar from "../../assets/avatar.svg";
 
-function SideBar() {
+function SideBar({ handleEditProfileClick }) {
   const currentUser = useContext(CurrentUserContext);
 
   return (
@@ -17,7 +17,11 @@ function SideBar() {
       />
       <p className="sidebar__username">{currentUser.name}</p>
       <div className="sidebar__options">
-        <button type="button" className="sidebar__edit-profile">
+        <button
+          type="button"
+          className="sidebar__edit-profile"
+          onClick={handleEditProfileClick}
+        >
           Change profile data
         </button>
         <button type="button" className="sidebar__log-out">

@@ -32,4 +32,19 @@ function deleteItem(itemId, token) {
   }).then((res) => processServerRequest(res));
 }
 
-export { getItems, addItem, deleteItem };
+function updateUser({ name, avatar }, token) {
+  const body = {};
+  if (name) body.name = name;
+  if (avatar) body.avatar = avatar;
+
+  return fetch(`${baseUrl}/users/me`, {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify(body),
+  }).then((res) => processServerRequest(res));
+}
+
+export { getItems, addItem, deleteItem, updateUser };
