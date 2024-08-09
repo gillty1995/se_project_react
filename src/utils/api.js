@@ -47,4 +47,23 @@ function updateUser({ name, avatar }, token) {
   }).then((res) => processServerRequest(res));
 }
 
-export { getItems, addItem, deleteItem, updateUser };
+function likeCard(cardId, token) {
+  return fetch(`${baseUrl}/items/${cardId}/likes`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+  }).then((res) => processServerRequest(res));
+}
+
+function dislikeCard(cardId, token) {
+  return fetch(`${baseUrl}/items/${cardId}/likes`, {
+    method: "DELETE",
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  }).then((res) => processServerRequest(res));
+}
+
+export { getItems, addItem, deleteItem, updateUser, likeCard, dislikeCard };

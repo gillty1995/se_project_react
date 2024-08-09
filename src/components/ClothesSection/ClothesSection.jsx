@@ -34,6 +34,7 @@ function ClothesSection({
               item={item}
               onCardClick={() => handleCardClick(item)}
               onDelete={() => handleDeleteItem(item)}
+              currentUser={currentUser}
             />
           ))
         ) : (

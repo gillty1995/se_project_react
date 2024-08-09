@@ -1,11 +1,24 @@
 import "./ItemCard.css";
-
 import likeBtn from "../../assets/like-btn.svg";
 
-function ItemCard({ item, onCardClick }) {
+function ItemCard({ item, onCardClick, currentUser, onCardLike }) {
+  if (!item || !item.likes || !currentUser) {
+    return <div>Error: Missing data</div>;
+  }
+
   const handleCardClick = () => {
     onCardClick(item);
   };
+
+  const handleLike = () => {
+    const isLiked = item.likes.some((id) => id === currentUser._id);
+    onCardLike({ id: item._id, isLiked });
+  };
+
+  const isLiked = item.likes.some((id) => id === currentUser._id);
+  const itemLikeButtonClassName = `card__like-button ${
+    isLiked ? "card__like-button_active" : ""
+  }`;
 
   return (
     <li className="card">
@@ -15,15 +28,16 @@ function ItemCard({ item, onCardClick }) {
         </div>
         <button
           type="button"
-          className="card__like-button"
+          className={itemLikeButtonClassName}
           style={{ backgroundImage: `url(${likeBtn})` }}
+          onClick={handleLike}
         ></button>
       </div>
       <img
         onClick={handleCardClick}
         className="card__image"
         src={item.imageUrl}
-        alt={item.name}
+        alt={item.name || "Item Image"}
       />
     </li>
   );

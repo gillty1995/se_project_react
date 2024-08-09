@@ -16,7 +16,13 @@ import LoginModal from "../LoginModal/LoginModal";
 import { getWeather, processWeatherData } from "../../utils/weatherApi";
 import { CurrentTemperatureUnitContext } from "../../contexts/CurrentTemperatureUnitContext";
 import { coordinates, APIkey } from "../../utils/constants";
-import { getItems, addItem, deleteItem } from "../../utils/api";
+import {
+  getItems,
+  addItem,
+  deleteItem,
+  likeCard,
+  dislikeCard,
+} from "../../utils/api";
 import { registUser, loginUser, checkToken } from "../../utils/auth";
 import AuthContext from "../../contexts/AuthContext";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
@@ -171,6 +177,28 @@ function App() {
       });
   };
 
+  const handleCardLike = ({ id, isLiked }) => {
+    const token = localStorage.getItem("jwt");
+
+    if (!isLiked) {
+      likeCard(id, token)
+        .then((updatedCard) => {
+          setClothingItems((cards) =>
+            cards.map((item) => (item._id === id ? updatedCard : item))
+          );
+        })
+        .catch((err) => console.log("Error adding like:", err));
+    } else {
+      dislikeCard(id, token)
+        .then((updatedCard) => {
+          setClothingItems((cards) =>
+            cards.map((item) => (item._id === id ? updatedCard : item))
+          );
+        })
+        .catch((err) => console.log("Error removing like:", err));
+    }
+  };
+
   const openLoginModal = () => setActiveModal("login");
   const openRegisterModal = () => setActiveModal("register");
 
@@ -196,6 +224,8 @@ function App() {
                     weatherData={weatherData}
                     handleCardClick={handleCardClick}
                     clothingItems={clothingItems}
+                    onCardLike={handleCardLike}
+                    currentUser={currentUser}
                   />
                 }
               />

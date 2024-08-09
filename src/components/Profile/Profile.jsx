@@ -16,6 +16,7 @@ function Profile({
   clothingItems,
   handleDeleteItem,
   handleAddClick,
+  currentUser,
 }) {
   const [activeModal, setActiveModal] = useState("");
   const navigate = useNavigate();
@@ -62,6 +63,7 @@ function Profile({
           onAddItem={onAddItem}
           handleDeleteItem={handleDeleteItem}
           handleAddClick={handleAddClick}
+          currentUser={currentUser}
         />
       </section>
       {activeModal === "edit-profile" && (
