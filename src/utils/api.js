@@ -2,10 +2,14 @@ import { processServerRequest } from "./utils";
 
 const baseUrl = "http://localhost:3001";
 
-function getItems() {
-  return fetch(`${baseUrl}/items`).then((res) => {
-    return processServerRequest(res);
-  });
+function getItems(token) {
+  return fetch(`${baseUrl}/items`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+  }).then((res) => processServerRequest(res));
 }
 
 function addItem(item, token) {

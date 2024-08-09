@@ -29,6 +29,7 @@ const AddItemModal = ({ closeActiveModal, onAddItem, isOpen }) => {
       setName("");
       setImageUrl("");
       setWeather("");
+      closeActiveModal();
     });
   };
 
@@ -39,6 +40,7 @@ const AddItemModal = ({ closeActiveModal, onAddItem, isOpen }) => {
       isOpen={isOpen}
       onClose={closeActiveModal}
       onSubmit={handleSubmit}
+      isFormValid={name && imageUrl && weather}
     >
       <label htmlFor="name" className="modal__label">
         Name{" "}

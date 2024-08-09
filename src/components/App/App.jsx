@@ -120,9 +120,13 @@ function App() {
           return updatedItems;
         });
         if (onDone) onDone();
-        closeActiveModal();
       })
-      .catch(console.error);
+      .catch((error) => {
+        console.error("Error adding item:", error);
+      })
+      .finally(() => {
+        closeActiveModal();
+      });
   };
 
   const handleRegister = ({ email, password, name, avatar }) => {
