@@ -16,6 +16,14 @@ function SideBar() {
         alt="Default avatar"
       />
       <p className="sidebar__username">{currentUser.name}</p>
+      <div className="sidebar__options">
+        <button type="button" className="sidebar__edit-profile">
+          Change profile data
+        </button>
+        <button type="button" className="sidebar__log-out">
+          Log out
+        </button>
+      </div>
     </div>
   );
 }
