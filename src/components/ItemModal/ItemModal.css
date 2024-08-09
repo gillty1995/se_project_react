@@ -62,3 +62,7 @@
   cursor: pointer;
   padding: 0;
 }
+
+.modal__delete_hidden {
+  visibility: hidden;
+}

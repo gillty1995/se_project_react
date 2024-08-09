@@ -1,8 +1,12 @@
 import React, { useState, useContext } from "react";
+
+import { updateUser } from "../../utils/api";
+import { useNavigate } from "react-router-dom";
+
+import AuthContext from "../../contexts/AuthContext";
 import SideBar from "../SideBar/SideBar";
 import ClothesSection from "../ClothesSection/ClothesSection";
 import EditProfileModal from "../EditProfileModal/EditProfileModal";
-import { updateUser } from "../../utils/api";
 
 import "./Profile.css";
 
@@ -14,6 +18,8 @@ function Profile({
   handleAddClick,
 }) {
   const [activeModal, setActiveModal] = useState("");
+  const navigate = useNavigate();
+  const { setIsLoggedIn } = useContext(AuthContext);
 
   const handleEditProfileClick = () => {
     setActiveModal("edit-profile");
@@ -35,10 +41,19 @@ function Profile({
       });
   };
 
+  const handleLogout = () => {
+    localStorage.removeItem("jwt");
+    setIsLoggedIn(false);
+    navigate("/");
+  };
+
   return (
     <div className="profile">
       <section className="profile__sidebar">
-        <SideBar handleEditProfileClick={handleEditProfileClick} />
+        <SideBar
+          handleEditProfileClick={handleEditProfileClick}
+          handleLogout={handleLogout}
+        />
       </section>
       <section className="profile__clothing-items">
         <ClothesSection
