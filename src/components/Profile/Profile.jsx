@@ -1,9 +1,5 @@
-import React, { useState, useContext } from "react";
+import React, { useState } from "react";
 
-import { updateUser } from "../../utils/api";
-import { useNavigate } from "react-router-dom";
-
-import AuthContext from "../../contexts/AuthContext";
 import SideBar from "../SideBar/SideBar";
 import ClothesSection from "../ClothesSection/ClothesSection";
 import EditProfileModal from "../EditProfileModal/EditProfileModal";
@@ -17,10 +13,11 @@ function Profile({
   handleDeleteItem,
   handleAddClick,
   currentUser,
+  onCardLike,
+  handleProfileUpdate,
+  handleLogout,
 }) {
   const [activeModal, setActiveModal] = useState("");
-  const navigate = useNavigate();
-  const { setIsLoggedIn } = useContext(AuthContext);
 
   const handleEditProfileClick = () => {
     setActiveModal("edit-profile");
@@ -30,22 +27,8 @@ function Profile({
     setActiveModal("");
   };
 
-  const handleProfileUpdate = ({ name, avatar }) => {
-    const token = localStorage.getItem("jwt");
-    updateUser({ name, avatar }, token)
-      .then((updatedUser) => {
-        console.log("Profile updated successfully:", updatedUser);
-        closeActiveModal();
-      })
-      .catch((error) => {
-        console.error("Error updating profile:", error);
-      });
-  };
-
-  const handleLogout = () => {
-    localStorage.removeItem("jwt");
-    setIsLoggedIn(false);
-    navigate("/");
+  const handleLogoutClick = () => {
+    handleLogout();
   };
 
   return (
@@ -53,7 +36,7 @@ function Profile({
       <section className="profile__sidebar">
         <SideBar
           handleEditProfileClick={handleEditProfileClick}
-          handleLogout={handleLogout}
+          handleLogout={handleLogoutClick}
         />
       </section>
       <section className="profile__clothing-items">
@@ -64,6 +47,7 @@ function Profile({
           handleDeleteItem={handleDeleteItem}
           handleAddClick={handleAddClick}
           currentUser={currentUser}
+          onCardLike={onCardLike}
         />
       </section>
       {activeModal === "edit-profile" && (

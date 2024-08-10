@@ -1,5 +1,4 @@
 import "./ItemCard.css";
-import likeBtn from "../../assets/like-btn.svg";
 
 function ItemCard({ item, onCardClick, currentUser, onCardLike }) {
   if (!item || !item.likes || !currentUser) {
@@ -29,7 +28,6 @@ function ItemCard({ item, onCardClick, currentUser, onCardLike }) {
         <button
           type="button"
           className={itemLikeButtonClassName}
-          style={{ backgroundImage: `url(${likeBtn})` }}
           onClick={handleLike}
         ></button>
       </div>

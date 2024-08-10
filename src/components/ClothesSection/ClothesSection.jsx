@@ -10,6 +10,7 @@ function ClothesSection({
   handleCardClick,
   handleAddClick,
   handleDeleteItem,
+  onCardLike,
 }) {
   const currentUser = useContext(CurrentUserContext);
 
@@ -35,6 +36,7 @@ function ClothesSection({
               onCardClick={() => handleCardClick(item)}
               onDelete={() => handleDeleteItem(item)}
               currentUser={currentUser}
+              onCardLike={onCardLike}
             />
           ))
         ) : (

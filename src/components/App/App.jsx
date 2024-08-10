@@ -22,6 +22,7 @@ import {
   deleteItem,
   likeCard,
   dislikeCard,
+  updateUser,
 } from "../../utils/api";
 import { registUser, loginUser, checkToken } from "../../utils/auth";
 import AuthContext from "../../contexts/AuthContext";
@@ -199,6 +200,26 @@ function App() {
     }
   };
 
+  const handleProfileUpdate = ({ name, avatar }) => {
+    const token = localStorage.getItem("jwt");
+    updateUser({ name, avatar }, token)
+      .then((updatedUser) => {
+        console.log("Profile updated successfully:", updatedUser);
+        setCurrentUser(updatedUser);
+        closeActiveModal();
+      })
+      .catch((error) => {
+        console.error("Error updating profile:", error);
+      });
+  };
+
+  const handleLogout = () => {
+    localStorage.removeItem("jwt");
+    setIsLoggedIn(false);
+    setCurrentUser(null);
+    navigate("/");
+  };
+
   const openLoginModal = () => setActiveModal("login");
   const openRegisterModal = () => setActiveModal("register");
 
@@ -238,6 +259,12 @@ function App() {
                         handleCardClick={handleCardClick}
                         clothingItems={clothingItems}
                         handleAddClick={handleAddClick}
+                        onAddItem={onAddItem}
+                        handleDeleteItem={handleDeleteItem}
+                        currentUser={currentUser}
+                        onCardLike={handleCardLike}
+                        handleProfileUpdate={handleProfileUpdate}
+                        handleLogout={handleLogout}
                       />
                     }
                     isAuthenticated={isAuthenticated}
