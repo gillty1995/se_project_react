@@ -3,7 +3,6 @@ import { useContext } from "react";
 
 import "./Header.css";
 
-import avatar from "../../assets/avatar.svg";
 import logo from "../../assets/logo.png";
 import ToggleSwitch from "../ToggleSwitch/ToggleSwitch";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
@@ -15,12 +14,20 @@ function Header({
   openRegisterModal,
   isLoggedIn,
 }) {
-  const currentUser = useContext(CurrentUserContext);
+  const currentUser = useContext(CurrentUserContext) || {};
 
   const currentDate = new Date().toLocaleString("default", {
     month: "long",
     day: "numeric",
   });
+
+  const getInitials = (name) => {
+    if (!name) return "";
+    return name
+      .split(" ")
+      .map((word) => word.charAt(0).toUpperCase())
+      .join("");
+  };
 
   return (
     <header className="header">
@@ -43,11 +50,17 @@ function Header({
             </button>
             <Link to="/profile" className="header__link">
               <p className="header__username">{currentUser.name}</p>
-              <img
-                src={currentUser.avatar || avatar}
-                alt="Avatar"
-                className="header__avatar"
-              />
+              {currentUser.avatar ? (
+                <img
+                  src={currentUser.avatar}
+                  alt="Avatar"
+                  className="header__avatar"
+                />
+              ) : (
+                <div className="header__avatar-placeholder">
+                  {getInitials(currentUser.name)}
+                </div>
+              )}
             </Link>
           </>
         ) : (

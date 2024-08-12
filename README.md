@@ -14,11 +14,11 @@
 
 **Back-End**
 
-Here is a link to the back-end server. https://github.com/gillty1995/se_project_express
+Here is a link to the back-end server. Use with 'npm run dev' https://github.com/gillty1995/se_project_express
 
 **Technology**
 
-This project is created using React.js, JSX, js, html, css, and the use of OpenWeather API. A mock server is set up using "json-server --watch db.json --id _id --port 3001".
+This project is created using React.js, JSX, js, html, css, and the use of OpenWeather API.
 
 **Figma**
 
@@ -34,7 +34,7 @@ This project is created using React.js, JSX, js, html, css, and the use of OpenW
 
 **Final Thoughts**
 
-UI runs smoothly with the new api, and the profile route is set up but can use updates. I would've liked to add a delete confirmation modal but ran out of time. 
+UI runs smoothly with backend express project. Users are able to register and log-in to their custom profile now. They can add new items to their main page, and favorite specific items as well. They can customize their profile in the profile section's sidebar options. All user data is safely protected using proper authorization techniques.
 
 **Plug Ins**
 

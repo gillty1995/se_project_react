@@ -1,5 +1,3 @@
-// import { useContext } from "react";
-// import { CurrentTemperatureUnitContext } from "../contexts/CurrentTemperatureUnitContext";
 import { processServerRequest } from "./utils";
 
 export const getWeather = ({ latitude, longitude }, APIkey) => {

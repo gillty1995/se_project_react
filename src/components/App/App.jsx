@@ -122,7 +122,7 @@ function App() {
       .then((newItem) => {
         console.log("New item from API:", newItem);
         setClothingItems((prevItems) => {
-          const updatedItems = [newItem, ...prevItems];
+          const updatedItems = [newItem.data, ...prevItems];
           console.log("Updated clothing items:", updatedItems);
           return updatedItems;
         });
