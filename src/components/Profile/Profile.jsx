@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useContext } from "react";
 
 import SideBar from "../SideBar/SideBar";
 import ClothesSection from "../ClothesSection/ClothesSection";
 import EditProfileModal from "../EditProfileModal/EditProfileModal";
+import CurrentUserContext from "../../contexts/CurrentUserContext";
 
 import "./Profile.css";
 
@@ -12,20 +13,14 @@ function Profile({
   clothingItems,
   handleDeleteItem,
   handleAddClick,
-  currentUser,
   onCardLike,
   handleProfileUpdate,
   handleLogout,
+  activeModal,
+  closeEditProfileModal,
+  handleEditProfileClick,
 }) {
-  const [activeModal, setActiveModal] = useState("");
-
-  const handleEditProfileClick = () => {
-    setActiveModal("edit-profile");
-  };
-
-  const closeActiveModal = () => {
-    setActiveModal("");
-  };
+  const currentUser = useContext(CurrentUserContext);
 
   const handleLogoutClick = () => {
     handleLogout();
@@ -50,13 +45,12 @@ function Profile({
           onCardLike={onCardLike}
         />
       </section>
-      {activeModal === "edit-profile" && (
-        <EditProfileModal
-          isOpen={true}
-          onClose={closeActiveModal}
-          handleProfileUpdate={handleProfileUpdate}
-        />
-      )}
+      <EditProfileModal
+        isOpen={activeModal === "edit-profile"}
+        onClose={closeEditProfileModal}
+        handleProfileUpdate={handleProfileUpdate}
+        currentUser={currentUser}
+      />
     </div>
   );
 }

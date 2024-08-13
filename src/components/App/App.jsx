@@ -127,12 +127,10 @@ function App() {
           return updatedItems;
         });
         if (onDone) onDone();
+        closeActiveModal();
       })
       .catch((error) => {
         console.error("Error adding item:", error);
-      })
-      .finally(() => {
-        closeActiveModal();
       });
   };
 
@@ -160,15 +158,14 @@ function App() {
           checkToken(data.token)
             .then((userData) => {
               setCurrentUser(userData);
+              login();
+              closeActiveModal();
+              navigate("/");
             })
             .catch((err) => {
               console.error("Error fetching user data:", err);
               setCurrentUser(null);
             });
-
-          login();
-          closeActiveModal();
-          navigate("/");
         } else {
           console.error("Invalid login response:", data);
         }
@@ -223,6 +220,14 @@ function App() {
   const openLoginModal = () => setActiveModal("login");
   const openRegisterModal = () => setActiveModal("register");
 
+  const handleEditProfileClick = () => {
+    setActiveModal("edit-profile");
+  };
+
+  const closeEditProfileModal = () => {
+    closeActiveModal();
+  };
+
   return (
     <CurrentUserContext.Provider value={currentUser}>
       <div className="page">
@@ -246,7 +251,6 @@ function App() {
                     handleCardClick={handleCardClick}
                     clothingItems={clothingItems}
                     onCardLike={handleCardLike}
-                    currentUser={currentUser}
                   />
                 }
               />
@@ -261,10 +265,12 @@ function App() {
                         handleAddClick={handleAddClick}
                         onAddItem={onAddItem}
                         handleDeleteItem={handleDeleteItem}
-                        currentUser={currentUser}
                         onCardLike={handleCardLike}
                         handleProfileUpdate={handleProfileUpdate}
                         handleLogout={handleLogout}
+                        activeModal={activeModal}
+                        handleEditProfileClick={handleEditProfileClick}
+                        closeEditProfileModal={closeEditProfileModal}
                       />
                     }
                     isAuthenticated={isAuthenticated}

@@ -1,16 +1,28 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import "./EditProfileModal.css";
 
-const EditProfileModal = ({ isOpen, onClose, handleProfileUpdate }) => {
+const EditProfileModal = ({
+  isOpen,
+  onClose,
+  handleProfileUpdate,
+  currentUser,
+}) => {
   const [name, setName] = useState("");
   const [avatar, setAvatar] = useState("");
 
+  useEffect(() => {
+    if (isOpen && currentUser) {
+      setName(currentUser.name || "");
+      setAvatar(currentUser.avatar || "");
+    }
+  }, [isOpen, currentUser]);
+
   const handleSubmit = (e) => {
     e.preventDefault();
+
     if (name || avatar) {
       handleProfileUpdate({ name, avatar });
-      closeModal();
     } else {
       alert("Please fill out at least one field.");
     }
@@ -18,18 +30,12 @@ const EditProfileModal = ({ isOpen, onClose, handleProfileUpdate }) => {
 
   const isFormValid = name || avatar;
 
-  const closeModal = () => {
-    setName("");
-    setAvatar("");
-    onClose();
-  };
-
   return (
     <ModalWithForm
       title="Change profile data"
       buttonText="Save changes"
       isOpen={isOpen}
-      onClose={closeModal}
+      onClose={onClose}
       onSubmit={handleSubmit}
       isFormValid={isFormValid}
     >
