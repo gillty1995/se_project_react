@@ -2,3 +2,10 @@
   display: flex;
   gap: 116px;
 }
+
+@media screen and (max-width: 490px) {
+  .profile {
+    flex-wrap: wrap;
+    padding-top: 20px;
+  }
+}

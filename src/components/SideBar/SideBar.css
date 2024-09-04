@@ -21,6 +21,8 @@
   line-height: 24.8px;
   text-align: left;
   color: rgba(0, 0, 0, 1);
+  display: flex;
+  align-items: center;
 }
 
 .sidebar__edit-profile {
