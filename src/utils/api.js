@@ -1,6 +1,9 @@
 import { processServerRequest } from "./utils";
 
-const baseUrl = "http://localhost:3001";
+const baseUrl =
+  process.env.NODE_ENV === "production"
+    ? "https://api.wtwr.fr.to"
+    : "http://localhost:3001";
 
 function getItems(token) {
   return fetch(`${baseUrl}/items`, {

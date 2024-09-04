@@ -112,3 +112,26 @@
   text-align: center;
   color: rgba(255, 255, 255, 1);
 }
+
+@media screen and (max-width: 749px) {
+  .header {
+    flex-wrap: wrap;
+    justify-content: center;
+    max-width: 400px;
+    margin: 0 auto;
+  }
+}
+
+@media screen and (max-width: 390px) {
+  .header {
+    width: 250px;
+  }
+
+  .header__logo {
+    margin: 0;
+  }
+
+  .header__date {
+    margin-bottom: 20px;
+  }
+}

@@ -66,3 +66,9 @@
 .modal__delete_hidden {
   visibility: hidden;
 }
+
+@media screen and (max-width: 490px) {
+  .modal__content_type_image {
+    height: unset;
+  }
+}

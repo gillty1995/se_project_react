@@ -14,3 +14,9 @@
   gap: 20px;
   cursor: pointer;
 }
+
+@media screen and (max-width: 749px) {
+  .cards__list {
+    justify-content: center;
+  }
+}
