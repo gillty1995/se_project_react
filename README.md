@@ -18,7 +18,7 @@ Here is a link to the back-end server. Use with 'npm run dev' https://github.com
 
 **Technology**
 
-This project is created using React.js, JSX, js, html, css, and the use of OpenWeather API.
+This project is created using React.js, JSX, js, html, css, and the use of OpenWeather API. Media queries are used to allow compatiblity with most popular screen sizes.
 
 **Figma**
 
