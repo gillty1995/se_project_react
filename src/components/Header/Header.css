@@ -122,6 +122,23 @@
   }
 }
 
+@media screen and (max-width: 490px) {
+  .header__user-container {
+    margin: 10px 0 0 0;
+  }
+  .header__avatar {
+    margin-top: 26px;
+  }
+
+  .header__add-clothes-btn {
+    height: unset;
+  }
+
+  .header__username {
+    height: unset;
+  }
+}
+
 @media screen and (max-width: 390px) {
   .header {
     width: 250px;
@@ -135,16 +152,7 @@
     margin-bottom: 20px;
   }
 
-  .header__user-container {
-    margin: 0;
-  }
-
-  .header__avatar {
-    margin-top: 24px;
-  }
-
-  .switch {
-    margin: unset;
-    margin-top: 11px;
+  header__link:click {
+    display: none;
   }
 }
